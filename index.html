@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator Fibonacci</title>
+    <style>
+        h1{
+        text-align: center;
+        color: #333;
+        }
+
+        body{
+        font-family: Cambria Math, sans-serif;
+        background-color: #fffdd0;
+        margin: 0;
+        padding: 0;
+        }
+
+        form{
+        text-align: center;
+        margin-top: 20px;
+        }
+
+        label{
+        font-weight: bold;
+        }
+
+        input::placeholder{
+        color: grey;
+        font-style: italic;
+        }
+
+        input[type=number] {
+        border: 2px solid grey;
+        border-radius: 10px;
+        box-shadow: 3px 3px 5px grey;
+        }
+
+        button{
+        color: white;
+        cursor: pointer;
+        border: none;
+
+        background-color: #007bff;
+        padding: 5px 10px;
+        }
+
+        button:hover{
+        background-color: #0056b3;
+        }
+
+        p{
+        text-align: center;
+        font-size: 18px;
+        margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+<h1>Fibonacci calculator</h1>
+<form>
+    <label for="number">Enter a number: </label>
+    <input type="number" id="number" min="1" step="1" placeholder="Input a number">
+    <button id="calculate" type="button">Calculate</button>
+</form>
+<p id="result"></p>
+<script>
+    var input = document.getElementById("number");
+    var output = document.getElementById("result");
+    document.getElementById("calculate").addEventListener("click", function() {
+    const n = parseInt(input.value);
+    if (!isNaN(n) && n > 0) {
+        const result = calculateFibonacci(n);
+        output.textContent = `The ${n}th Fibonacci number is: ${result}`;
+    } else {
+        output.textContent = "Please enter a valid positive integer.";
+    }
+});
+
+    function calculateFibonacci(n) {
+    if (n <= 2) {
+        return 1;
+    }
+    let a = 1;
+    let b = 1;
+    for (let i = 3; i <= n; i++) {
+        const temp = a + b;
+        a = b;
+        b = temp;
+    }
+    return b;
+}
+</script>
+</body>
+</html>
